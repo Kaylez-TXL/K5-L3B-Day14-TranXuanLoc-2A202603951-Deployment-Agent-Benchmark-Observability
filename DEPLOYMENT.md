@@ -2,9 +2,9 @@
 
 ## Trạng thái
 
-- **Nền tảng dự kiến** — Railway.
+- **Nền tảng** — Railway.
 - **Mã nguồn agent** — [`06-lab-complete/`](06-lab-complete/).
-- **URL public** — Chờ deploy và kiểm tra.
+- **URL public** — [day14-agent-production-d8849856.up.railway.app](https://day14-agent-production-d8849856.up.railway.app).
 
 ## Cấu hình service
 
@@ -23,11 +23,10 @@ Sau khi deploy, tạo domain của **agent** trong **Settings → Networking →
 
 ## Kiểm tra URL public
 
-Chạy trong terminal WSL và nhập domain HTTPS cùng API key đã đặt trên Railway. Lệnh chỉ in mã HTTP.
+Chạy trong terminal WSL và nhập API key đã đặt trên Railway. Các lệnh `curl` chỉ in mã HTTP.
 
 ```bash
-read -rp 'URL public (https://...): ' BASE
-BASE=${BASE%/}
+BASE='https://day14-agent-production-d8849856.up.railway.app'
 read -rsp 'AGENT_API_KEY: ' AGENT_API_KEY
 printf '\n'
 
@@ -43,13 +42,15 @@ unset AGENT_API_KEY
 
 | Phép thử | Mã mong đợi | Mã nhận được |
 | --- | ---: | --- |
-| `GET /health` | 200 | Chờ kiểm tra |
-| `GET /ready` | 200 | Chờ kiểm tra |
-| `POST /ask` thiếu key | 401 | Chờ kiểm tra |
-| `POST /ask` có key | 200 | Chờ kiểm tra |
+| `GET /health` | 200 | 200 |
+| `GET /ready` | 200 | 200 |
+| `POST /ask` thiếu key | 401 | 401 |
+| `POST /ask` có key | 200 | 200 |
 
-## Ảnh bằng chứng cần bổ sung
+Em tự chạy cả bốn phép thử trong terminal WSL và ghi kết quả trong [ảnh kiểm tra](screenshots/test.png). Trước đó, AI đã kiểm tra độc lập ba lượt không dùng key trên cùng URL.
 
-- `screenshots/dashboard.png` — Project Railway có agent và Redis.
-- `screenshots/running.png` — Deployment agent đang chạy.
-- `screenshots/test.png` — Terminal hiển thị bốn mã HTTP từ domain public.
+## Ảnh bằng chứng
+
+- [`dashboard.png`](screenshots/dashboard.png) — Project Railway có `day14-agent` và Redis cùng online.
+- [`running.png`](screenshots/running.png) — Deployment của agent ở trạng thái Active và có domain public.
+- [`test.png`](screenshots/test.png) — Terminal WSL hiển thị bốn mã HTTP `200 / 200 / 401 / 200`.

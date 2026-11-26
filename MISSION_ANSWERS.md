@@ -139,7 +139,7 @@ Content-Type: application/json
 
 ### Exercise 3.1 — Railway
 
-Em chuẩn bị deploy agent Part 6 từ `06-lab-complete/` bằng Dockerfile đã qua CP5. Redis sẽ nằm trong cùng project Railway. URL public, kết quả bốn lệnh kiểm tra và ảnh sẽ được ghi vào [DEPLOYMENT.md](DEPLOYMENT.md) sau khi em triển khai.
+Em deploy agent Part 6 từ `06-lab-complete/` bằng Dockerfile đã qua CP5. Trên URL public, `/health` và `/ready` trả `200`. `POST /ask` trả `401` khi thiếu key và `200` khi dùng key em đặt trên Railway. [URL Railway](https://day14-agent-production-d8849856.up.railway.app) · [Ảnh kiểm tra](screenshots/test.png) · [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ### Exercise 3.2 — So sánh cấu hình Railway và Render
 
@@ -337,4 +337,4 @@ Mục `Public URL ready` xác nhận cấu hình Railway và việc đọc biế
 - **CP3** — Em nhờ AI đọc mã mẫu, chạy thử API key, JWT và rate limit trong container tạm ở WSL, rồi hỗ trợ soạn báo cáo và hướng dẫn em lặp lại phép thử. Em tự lấy JWT và chạy vòng lặp `curl` trong VS Code, đối chiếu 10 lượt `200 OK` và lượt 11 trả `429` với giới hạn trong mã. Báo cáo ghi cả kết quả em tự chạy và phản hồi chi tiết từ lần chạy của AI. Token được che.
 - **CP4** — Em nhờ AI hướng dẫn chạy stack và hỗ trợ ghi kết quả. Em tự bật ba agent bằng Compose trong WSL, chạy `test_stateless.py` và đối chiếu output có ba instance xử lý năm request cùng session, với đủ 10 tin nhắn trong history. AI hỗ trợ sửa lệnh khi terminal đứng sai vị trí và chạy các phép thử bổ sung về health, readiness, SIGTERM và đọc lại history sau khi dừng một agent. Báo cáo ghi rõ nguồn của từng kết quả.
 - **CP5** — Em nhờ AI triển khai các TODO trong bản khung và hướng dẫn tự kiểm tra. AI chỉnh các module FastAPI, Redis, cấu hình Docker và Railway. Em tự chuẩn bị môi trường Python, chạy script chấm đầy đủ trong WSL với Docker và xác nhận output báo `PASS 12/12` với `41/41 checks passed`. AI hỗ trợ ghi lại checklist và các số đo từ terminal của em.
-- **CP6** — Em nhờ AI chuẩn bị phần triển khai tiếp theo. AI đối chiếu tài liệu Railway với cấu hình của repo, soạn bước kiểm tra và phần so sánh các nền tảng. Kết quả deploy và các lệnh kiểm tra public đang chờ em thực hiện.
+- **CP6** — Em nhờ AI đối chiếu tài liệu Railway với cấu hình repo và soạn hướng dẫn triển khai. Em cấu hình agent và Redis trên Railway, tạo domain, chạy đủ bốn lệnh trong WSL và tự chụp ba ảnh bằng chứng. AI kiểm tra độc lập ba lượt không dùng key, rồi lưu và gắn link ba ảnh em cung cấp. Em nhập key qua dấu nhắc ẩn trong terminal.
